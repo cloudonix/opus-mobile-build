@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  imageName: 'pipelines-javascript-docker'
+  imageName: 'opus-android-build'
 
 steps:
 - task: Docker@2
