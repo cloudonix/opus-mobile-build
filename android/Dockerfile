@@ -9,3 +9,8 @@ WORKDIR /app/opus/jni
 RUN mv ../src ../include ../silk ../celt ../*.mk ./
 RUN /opt/android/ndk/ndk-build clean
 RUN /opt/android/ndk/ndk-build
+RUN for arch in $(awk -F' := ' '$1=="APP_ABI"{print$2}' < Application.mk); do \
+	install ../obj/local/${arch}/libopus.a -m644 -D /app/release/android/${arch}/lib/libopus.a; \
+	install -D -t /app/release/android/${arch}/include/opus include/*; \
+	done
+RUN cd /app/release && tar -zcf opus-android.tar.gz android
