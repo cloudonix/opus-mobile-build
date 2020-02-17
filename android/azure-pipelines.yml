@@ -16,7 +16,7 @@ steps:
       docker create --name run "$(imageName)"
       docker cp run:/app/release/android $(Build.ArtifactStagingDirectory)
     workingDirectory: 'android'
-- task: UniversalPackages@0
+- task: UniversalPackages
   displayName: Universal Publish
   inputs:
     command: publish
