@@ -14,3 +14,9 @@ steps:
     repository: $(imageName)
     command: build
     Dockerfile: android/Dockerfile
+- task: CmdLine@2
+  inputs:
+    script: |
+      docker build -t ${imageName} .
+      docker run -ti --rm ${imageName} ls
+    workingDirectory: 'android'
