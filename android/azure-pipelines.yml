@@ -17,6 +17,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      docker build -t ${imageName} .
-      docker run -a stdout -a stderr --rm ${imageName} ls
+      docker build -t "$(imageName)" .
+      docker run -a stdout -a stderr --rm "$(imageName)" ls
     workingDirectory: 'android'
