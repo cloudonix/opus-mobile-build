@@ -18,5 +18,5 @@ steps:
   inputs:
     script: |
       docker build -t ${imageName} .
-      docker run -ti --rm ${imageName} ls
+      docker run -a stdout -a stderr --rm ${imageName} ls
     workingDirectory: 'android'
