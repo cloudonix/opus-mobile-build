@@ -8,16 +8,15 @@ variables:
   imageName: 'opus-android-build'
 
 steps:
-#- task: Docker@2
-#  displayName: Build Opus in image
-#  inputs:
-#    repository: $(imageName)
-#    command: build
-#    Dockerfile: android/Dockerfile
 - task: CmdLine@2
   inputs:
     script: |
       set -x
       docker build -t "$(imageName)" .
-      docker run -a stdout -a stderr --rm "$(imageName)" ls
+      docker create --name run opus-build
+      docker cp run:/app/release/opus-android.tar.gz ./
     workingDirectory: 'android'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: android/opus-android.tar.gz
+    artifactName: opus-android
