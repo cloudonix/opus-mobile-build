@@ -16,7 +16,11 @@ steps:
       docker create --name run "$(imageName)"
       docker cp run:/app/release/android $(Build.ArtifactStagingDirectory)
     workingDirectory: 'android'
-- task: PublishBuildArtifacts@1
+- task: UniversalPackages@0
+  displayName: Universal Publish
   inputs:
-    pathtoPublish: $(Build.ArtifactStagingDirectory)
-    artifactName: opus-android
+    command: publish
+    publishDirectory: $(Build.ArtifactStagingDirectory)
+    vstsFeedPublish: android
+    vstsFeedPackagePublish: opus
+    packagePublishDescription: Opus Android build
