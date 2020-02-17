@@ -13,10 +13,10 @@ steps:
     script: |
       set -x
       docker build -t "$(imageName)" .
-      docker create --name run opus-build
-      docker cp run:/app/release/opus-android.tar.gz ./
+      docker create --name run "$(imageName)"
+      docker cp run:/app/release/android $(Build.ArtifactStagingDirectory)
     workingDirectory: 'android'
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: android/opus-android.tar.gz
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
     artifactName: opus-android
