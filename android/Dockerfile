@@ -12,5 +12,7 @@ RUN /opt/android/ndk/ndk-build
 RUN for arch in $(awk -F' := ' '$1=="APP_ABI"{print$2}' < Application.mk); do \
 	install ../obj/local/${arch}/libopus.a -m644 -D /app/release/android/${arch}/lib/libopus.a; \
 	install -D -t /app/release/android/${arch}/include/opus include/*; \
-	done
+	done; \
+	mv /app/release/android/arm64-v8a /app/release/android/arm64; \
+	mv /app/release/android/armeabi-v7a /app/release/android/armv7
 RUN cd /app/release && tar -zcf opus-android.tar.gz android
