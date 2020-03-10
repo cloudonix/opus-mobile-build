@@ -1,5 +1,5 @@
 VERSION := 1.3.1
-ARTIFACTSDIR := release/opus
+ARTIFACTSDIR := release/ios
 BUILDDIR := opus-$(VERSION)
 TMPINSTALLDIR := tmp-install
 
