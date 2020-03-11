@@ -6,7 +6,7 @@ TMPINSTALLDIR := tmp-install
 ARCHS := x86_64 armv7 arm64
 
 CPP = clang -E
-CFLAGS := -O3 -Wno-unused-label -g
+CFLAGS := -O3 -Wno-unused-label -g -miphoneos-version-min=8.0
 
 all: download compile-arm compile-x86_64
 
